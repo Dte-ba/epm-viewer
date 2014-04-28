@@ -1,0 +1,14 @@
+{
+  "name": "epm-viewer",
+  "main": "index.html",
+  "window": {
+    "toolbar": true,
+    "width": 1024,
+    "height": 768
+  },
+  "dependencies": {
+    "epm": "0.0.31",
+    "mkdirp": "^0.3.5",
+    "async": "^0.7.0"
+  }
+}

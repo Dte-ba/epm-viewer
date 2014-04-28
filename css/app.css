@@ -1,0 +1,50 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 40px;
+}
+
+.page-host {
+    position: relative;
+    top: 40px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #f5f5f5;
+}
+
+#footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+ul.packages {
+  list-style: none;
+}
+
+ul.packages li.package {
+  border: solid 1px orange;
+  position: relative;
+  font-weight: 80%;
+  margin: 5px;
+  display: -moz-inline-box;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 224px;
+  height: 224px;
+}
+
+ul.packages li.package span.uid {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
