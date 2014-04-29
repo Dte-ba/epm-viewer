@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "epm": "0.0.41",
+    "request": "^2.34.0",
     "mkdirp": "^0.3.5",
     "async": "^0.7.0"
   }

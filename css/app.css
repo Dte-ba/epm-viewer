@@ -35,7 +35,7 @@ ul.packages {
 }
 
 ul.packages li.package {
-  border: solid 1px orange;
+  border: solid 1px #428bca;
   position: relative;
   font-weight: 80%;
   margin: 5px;
@@ -47,14 +47,37 @@ ul.packages li.package {
   height: 224px;
 }
 
+ul.packages li.package.has-local {
+  border: solid 3px #428bca;
+}
+
+ul.packages li.package.no-local {
+  border: solid 3px #a94442;
+}
+
+ul.packages li.package.update-local {
+  border: solid 3px #8a6d3b;
+}
+
+span.has-local {
+  background-color: #428bca;
+}
+
+span.no-local {
+  background-color: #a94442;
+}
+
+span.update-local {
+  background-color: #8a6d3b;
+}
+
 .crop {
     float: left;
     margin: 5px;
     overflow: hidden; /* this is important */
     position: relative; /* this is important too */
-    border: 1px solid #ccc;
-    width: 214px;
-    height: 214px;
+    width: 204px;
+    height: 204px;
 }
 .crop img {
     position: absolute;

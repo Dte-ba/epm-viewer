@@ -48,6 +48,7 @@
                   <ul class="nav navbar-nav">
                       <li class="active"> <a href="#">Local</a> </li>
                       <li> <a href="upload.html?repo=main">Agregar Paquetes</a> </li>
+                      <li> <a href="remotes.html">Fuentes Remotas</a> </li>
                   </ul>
               </div>
           </nav>
@@ -56,6 +57,8 @@
 
         <!-- INDEX -->
         <section class="page-host">
+          
+          <div id="messageHost"></div>
           
           <!-- First init -->
           <div class="jumbotron" data-bind="visible: !hasRepos()" style="margin-top: 30px; display: none;">
@@ -75,6 +78,16 @@
           </div>
 
           <!-- ko if: packages().length > 0 -->
+
+          <div class="input-group">
+            <input type="text" class="form-control" data-bind="value: filterText">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button"
+                      data-bind="click: filterHanlder"><i class="glyphicon glyphicon-search"></i> Filtrar</button>
+            </span>
+          </div>
+
+          <hr>
 
           <ul class="packages packages-wraper" data-bind="foreach: packages">
             <li class="package">

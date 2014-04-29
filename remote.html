@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>EPM Viewer</title>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+
+        <link rel="stylesheet" href="css/app.css" />
+
+        <script type="text/javascript">
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement("style");
+                var mq = "@@-ms-viewport{width:auto!important}";
+                msViewportStyle.appendChild(document.createTextNode(mq));
+                document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+            }
+        </script>
+
+    </head>
+    <body>
+      
+      <div id="content" class="container-fluid" >
+        <!-- HEADER -->
+        <header>
+          <div class="page-header">
+            <div class="pull-right">
+              <a href="remotes.html" class="btn btn-primary" data-bind="visible: !processing()">volver</a>
+              <button class="btn btn-success"
+                      data-bind="click: pullHandler, enable: !processing()"><i class="glyphicon glyphicon-download"></i> Descargar todos</button>
+            </div>
+            <h3 data-bind="text: 'Fuente: ' + remoteName()"></h3>
+          </div>
+        </header>
+        <!-- /HEADER -->
+
+        <!-- INDEX -->
+        <section class="page-host" style="display: none" data-bind="visible: !processing()">
+          
+          <div id="messageHost"></div>
+          
+          <!-- ko if: packages().length > 0 -->
+          
+          <div>
+            <h4>Estado en repositorio local</h4>
+            <span class="uid label has-local">Existentes</span>
+            <span class="uid label no-local">Para descargar</span>
+            <span class="uid label update-local">Para actualizar</span>
+          </div>
+
+          <hr>
+
+          <ul class="packages packages-wraper" data-bind="foreach: packages">
+            <li class="package" data-bind="css: $data.class">
+              <div class="crop">
+                <img data-bind="attr: {src: $data.front}" alt="" class="thumbnail">
+              </div>
+              <span class="uid label" data-bind="text: $data.shortuid, css: $data.class"></span>
+            </li>
+          </ul>
+
+          <hr>
+          <!-- /ko -->
+
+          <!-- ko if: !packages().length -->
+            <div class="jumbotron" style="margin-top: 30px;">
+              <p>No existen paquetes en la fuente remotas.</p>
+            </div>
+            <!-- /ko -->
+
+        </section>
+        <!-- /INDEX -->
+
+      </div>
+
+      <div id="main-progress" class="container-fluid" data-bind="visible: processing">
+        <div class="jumbotron">
+          <div>
+            <p class="lead" data-bind="text: status" ></p>
+            <div class="progress">
+            
+              <div data-bind="progressBar: progress"></div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="footer">
+        <div class="container">
+          <p class="text-muted">Copyright(c) 2014 Dirección de Tecnología Educativa de Buenos Aires</p>
+        </div>
+      </div>
+
+      <script type="text/javascript" src="lib/jquery/jquery-1.9.1.js"></script>
+      <script type="text/javascript" src="lib/knockout/knockout-2.3.0.js"></script>
+      <script type="text/javascript" src="lib/knockout/koExtender.js"></script>
+      <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+      <script type="text/javascript" src="app/remote.js"></script>
+
+    </body>
+</html>

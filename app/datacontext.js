@@ -58,10 +58,10 @@ repos.initServer = function(cb){
   var se = process.env.EPM_SERVER = serv.createServer({path: repos.localpath});
 
   se
-  .listen(3220, function(err) {
+  .listen(3225, function(err) {
     if (err) return cb && cb(err);
 
-    console.log("serving repos at http://127.0.0.1:3220");
+    console.log("serving repos at http://127.0.0.1:3225");
     return cb && cb(null, se);
   });
 
@@ -85,8 +85,27 @@ function configure(dir){
 
   res.localpath = path.join(dir, "local");
 
+  var m = new epm.EpmRepo(path.join(res.localpath, "main"));
+  m.file.saveOnSet = true
+
+  m.log.on("log", function(data){
+    console.log("log: " + data.message );
+  });
+
+  m.log.on("info", function(data){
+    console.log("info: " + data.message );
+  });
+
+  m.log.on("verbose", function(data){
+    console.log("verbose: " + data.message );
+  });
+
+  m.log.on("error", function(data){
+    console.error("error: " + data.message );
+  });  
+  
   res.local = {
-    main: new epm.EpmRepo(path.join(res.localpath, "main"))
+    main: m
   };
 
   res.remotes = {};
