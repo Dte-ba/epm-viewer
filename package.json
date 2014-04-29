@@ -7,7 +7,7 @@
     "height": 768
   },
   "dependencies": {
-    "epm": "0.0.31",
+    "epm": "0.0.41",
     "mkdirp": "^0.3.5",
     "async": "^0.7.0"
   }

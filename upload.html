@@ -29,9 +29,9 @@
     </head>
     <body>
       
-      <div id="content" class="container-fluid" style="display: none" data-bind="visible: !processing()">
+      <div id="content" class="container-fluid" >
         <!-- HEADER -->
-        <header data-bind="visible: hasRepos">
+        <header>
           <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
               <div class="navbar-header">
                   <div class="logo-nav-bar"></div>
@@ -46,67 +46,63 @@
               
               <div class="collapse navbar-collapse navbar-ex1-collapse">
                   <ul class="nav navbar-nav">
-                      <li class="active"> <a href="#">Local</a> </li>
-                      <li> <a href="upload.html?repo=main">Agregar Paquetes</a> </li>
+                      <li> <a href="index.html">Local</a> </li>
+                      <li class="active"> <a href="#">Agregar Paquetes</a></li>
                   </ul>
               </div>
           </nav>
         </header>
         <!-- /HEADER -->
 
-        <!-- INDEX -->
+        <!-- UPLOAD -->
         <section class="page-host">
-          
-          <!-- First init -->
-          <div class="jumbotron" data-bind="visible: !hasRepos()" style="margin-top: 30px; display: none;">
-            <h1>Bienvenido</h1>
-            <p class="lead">Crea un repositorio local de paquetes para empezar a utilizar EPM Viewer!</p>
+          <div class="page-header">
+            <h3>Subiendo paquetes</h3>
+          </div>
+
+          <div class="jumbotron" data-bind="visible: !processing() && files().length == 0" style="margin-top: 30px;">
+            <p class="lead">Selecciona los paquetes que queres agregar</p>
+            <p><input id="file-main" type="file" accept=".zip" multiple title="Seleccionar paquetes"></p>
+          </div>
+
+          <div class="jumbotron" data-bind="visible: processing"  style="margin-top: 30px;display: none">
+            <p class="lead" data-bind="text: status"></p>
+            <div data-bind="progressBar: progress"></div>
+          </div>
+
+          <div class="jumbotron" data-bind="visible: !processing() && files().length > 0 "  style="margin-top: 30px;display: none">
+            <p class="lead">Subir Paquetes</p>
             <p><a class="btn btn-lg btn-success" href="#" role="button"
-                  data-bind="click: createRepoHandler, visible: !processing()">Crear repositorio local</a></p>
+                  data-bind="click: uploadHandler">Subir</a></p>
           </div>
-
-          <div class="page-header" data-bind="visible: hasRepos" style="display: none;">
-            <h3>Mis paquetes</h3>
-          </div>
-
-          <div class="jumbotron" data-bind="visible: packages().length === 0 && hasRepos()" style="margin-top: 30px; display: none;">
-            <p class="lead">Oops! No hay paquetes locales</p>
-            <p><a class="btn btn-lg btn-success" href="upload.html?repo=main" role="button">Subir paquetes</a></p>
-          </div>
-
-          <!-- ko if: packages().length > 0 -->
-
-          <ul class="packages packages-wraper" data-bind="foreach: packages">
-            <li class="package">
-              <div class="crop">
-                <img data-bind="attr: {src: $data.front}" alt="" class="thumbnail">
-              </div>
-              <span class="uid label label-primary" data-bind="text: $data.shortuid"></span>
-            </li>
-          </ul>
 
           <hr>
-          <!-- /ko -->
 
-        </section>
-        <!-- /INDEX -->
-
-      </div>
-      
-      <!-- PROGRESS -->
-      <div id="main-progress" class="container-fluid" data-bind="visible: processing">
-        <div class="jumbotron">
-          <div>
-            <p class="lead" data-bind="text: status" ></p>
-            <div class="progress">
-            
-              <div data-bind="progressBar: progress"></div>
-              
-            </div>
+          <div data-bind="visible: files().length > 0 && !processing()">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Archivo</th>
+                  <th>Build</th>
+                  <th>Title</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: files">
+                <tr>
+                  <td data-bind="text: $data.index"></td>
+                  <td data-bind="text: $data.filename"></td>
+                  <td data-bind="text: $data.build"></td>
+                  <td data-bind="text: $data.title"></td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
           </div>
-        </div>
+        </section>
+        <!-- /UPLOAD -->
+
       </div>
-      <!-- /PROGRESS -->
 
       <div id="footer">
         <div class="container">
@@ -118,7 +114,8 @@
       <script type="text/javascript" src="lib/knockout/knockout-2.3.0.js"></script>
       <script type="text/javascript" src="lib/knockout/koExtender.js"></script>
       <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
-      <script type="text/javascript" src="app/main.js"></script>
+      <script type="text/javascript" src="lib/bootstrap/js/bootstrap.file-input.js"></script>
+      <script type="text/javascript" src="app/upload.js"></script>
 
     </body>
 </html>
