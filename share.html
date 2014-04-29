@@ -29,9 +29,9 @@
     </head>
     <body>
       
-      <div id="content" class="container-fluid" style="display: none" data-bind="visible: !processing()">
-        <!-- HEADER -->
-        <header data-bind="visible: hasRepos">
+      <div id="content" class="container-fluid" >
+      <!-- HEADER -->
+        <header >
           <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
               <div class="navbar-header">
                   <div class="logo-nav-bar"></div>
@@ -46,82 +46,23 @@
               
               <div class="collapse navbar-collapse navbar-ex1-collapse">
                   <ul class="nav navbar-nav">
-                      <li class="active"> <a href="#">Local</a> </li>
+                      <li> <a href="#">Local</a> </li>
                       <li> <a href="upload.html?repo=main">Agregar Paquetes</a> </li>
                       <li> <a href="remotes.html">Fuentes Remotas</a> </li>
-                      <li> <a href="share.html">Compartir</a> </li>
+                      <li class="active"> <a href="#">Compartir</a> </li>
                   </ul>
               </div>
           </nav>
         </header>
         <!-- /HEADER -->
 
-        <!-- INDEX -->
-        <section class="page-host">
-          
-          <div id="messageHost"></div>
-          
-          <!-- First init -->
-          <div class="jumbotron" data-bind="visible: !hasRepos()" style="margin-top: 30px; display: none;">
-            <h1>Bienvenido</h1>
-            <p class="lead">Crea un repositorio local de paquetes para empezar a utilizar EPM Viewer!</p>
-            <p><a class="btn btn-lg btn-success" href="#" role="button"
-                  data-bind="click: createRepoHandler, visible: !processing()">Crear repositorio local</a></p>
-          </div>
-
-          <div class="page-header" data-bind="visible: hasRepos" style="display: none;">
-            <h3>Mis paquetes</h3>
-          </div>
-
-          <div class="jumbotron" data-bind="visible: packages().length === 0 && hasRepos()" style="margin-top: 30px; display: none;">
-            <p class="lead">Oops! No hay paquetes locales</p>
-            <p><a class="btn btn-lg btn-success" href="upload.html?repo=main" role="button">Subir paquetes</a></p>
-          </div>
-
-          <!-- ko if: packages().length > 0 -->
-
-          <div class="input-group">
-            <input type="text" class="form-control" data-bind="value: filterText">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button"
-                      data-bind="click: filterHanlder"><i class="glyphicon glyphicon-search"></i> Filtrar</button>
-            </span>
-          </div>
-
-          <hr>
-
-          <ul class="packages packages-wraper" data-bind="foreach: packages">
-            <li class="package">
-              <div class="crop">
-                <img data-bind="attr: {src: $data.front}" alt="" class="thumbnail">
-              </div>
-              <span class="uid label label-primary" data-bind="text: $data.shortuid"></span>
-            </li>
-          </ul>
-
-          <hr>
-          <!-- /ko -->
-
-        </section>
-        <!-- /INDEX -->
+        <div class="jumbotron" style="margin-top: 60px;">
+          <p class="lead">Compartir paquetes</p>
+          <p><a href="" data-bind="text: epmLink, attr: { href: epmLink }"></a></p>
+        </div>
 
       </div>
       
-      <!-- PROGRESS -->
-      <div id="main-progress" class="container-fluid" data-bind="visible: processing">
-        <div class="jumbotron">
-          <div>
-            <p class="lead" data-bind="text: status" ></p>
-            <div class="progress">
-            
-              <div data-bind="progressBar: progress"></div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /PROGRESS -->
-
       <div id="footer">
         <div class="container">
           <p class="text-muted">Copyright(c) 2014 Dirección de Tecnología Educativa de Buenos Aires</p>
@@ -132,7 +73,7 @@
       <script type="text/javascript" src="lib/knockout/knockout-2.3.0.js"></script>
       <script type="text/javascript" src="lib/knockout/koExtender.js"></script>
       <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
-      <script type="text/javascript" src="app/main.js"></script>
+      <script type="text/javascript" src="app/share.js"></script>
 
     </body>
 </html>
