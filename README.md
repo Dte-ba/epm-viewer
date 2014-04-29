@@ -5,7 +5,7 @@ Visor de paquetes para [EPM](https://github.com/Dte-ba/epm)
 ## How To
 
 - Descarga el repositorio
-- Descargar e instala la [ultima version](http://dl.node-webkit.org/v0.9.2/node-webkit-v0.9.2-win-ia32.zip) de [Node-WebKit](http://node-webkit.org)
+- Descargar e instala la [ultima version](http://dl.node-webkit.org/v0.9.2/node-webkit-v0.9.2-win-ia32.zip) de [Node-WebKit](https://github.com/rogerwang/node-webkit)
 
 ```
 ~: cd /path/to
