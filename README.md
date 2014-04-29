@@ -5,7 +5,7 @@ Visor de paquetes para [EPM](https://github.com/Dte-ba/epm)
 ## How To
 
 - Descarga y extrae en `/path/to/epm-viewer` la [ultima versión](https://github.com/Dte-ba/epm-viewer/archive/master.zip)
-- Descargar e instala la [ultima versión](http://dl.node-webkit.org/v0.9.2/node-webkit-v0.9.2-win-ia32.zip) de [Node-WebKit](https://github.com/rogerwang/node-webkit)
+- Descarga e instala la [ultima versión](http://dl.node-webkit.org/v0.9.2/node-webkit-v0.9.2-win-ia32.zip) de [Node-WebKit](https://github.com/rogerwang/node-webkit)
 
 ```
 cd /path/to/epm-viewer
